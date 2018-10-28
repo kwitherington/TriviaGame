@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TriviaGame</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="assets/javascript/app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center page-header">
+                <h1 class="bodyHeader">HIP HOP TRIVIA</h1>
+            </div>
+        </div>
+
+        <div class="row start">
+            <!-- To be hidden when the game starts -->
+            <div class="col-md-12 text-center">
+                <button id="startButton">START</button>
+            </div>
+        </div>
+
+        <div class="row countdown">
+            <div class="col-md-6 text-center">
+                <h2 id="points">20</h2>
+            </div>
+
+            <div class="col-md-6 text-center">
+                <h2 id="score"></h2>
+            </div>
+        </div>
+
+        <div class="row question">
+            <div class="col-md-12 text-center">
+                <!-- We can empty this div when the answer is selected and 
+                display the result. -->
+                <h2 id="question">What was Kendrick Lamar's first studio album?</h2>
+            </div>
+        </div>
+
+        <div class="row answers">
+            <div class="col-md-12 text-center">
+                <!-- We can empty this div when the answer is selected. -->
+                <div>
+                    <button class="answer" id="answer1">Good Kid M.A.A.D City</button>
+                </div>
+                <div>
+                    <button class="answer" id="answer2">Section.80</button>
+                </div>
+                <div>
+                    <button class="answer" id="answer3">Damn.</button>
+                </div>
+                <div>
+                    <button class="answer" id="answer4">To Pimp a Butterfly</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row result">
+            <!-- To be displayed after answer selection -->
+            <div class="col-md-12 text-center">
+                <h2 id="rightWrong">Correct/Incorrect</h2>
+                <br>
+                <h3 id="prompt">The Correct Answer Was:</h3>
+            </div>
+        </div>
+
+        <div class="row scoreCard">
+            <!-- To be displayed at the end of the questions array -->
+            <div class="col-md-12 text-center">
+                <h2 id="rightAnswers">You answered X correctly</h2>
+                <br>
+                <h2 id="wrongAnswers">You answered X incorrectly</h2>
+                <br>
+                <h2 id="totalScore">Total Score:</h2>
+                <br>
+                <br>
+                <button id="playAgain">Play Again?</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
