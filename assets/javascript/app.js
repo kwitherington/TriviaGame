@@ -90,7 +90,7 @@ $(document).ready(function() {
         for (i = 0; i < answerArrays[questionSelector].length; i++) {
             $("#answerSection" + i).html("");
             var answerButton = $("<button>");
-            answerButton.addClass("answer");
+            answerButton.addClass("answer btn btn-outline-primary btn-lg btn-block");
             answerButton.id = "answer" + i;
             answerButton.attr("data-name", answerArrays[questionSelector][i]);
             answerButton.text(answerArrays[questionSelector][i]);
