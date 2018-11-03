@@ -4,38 +4,70 @@ var incorrect = 0;
 var score = 0;
 var questionSelector = 0;
 var rightWrong = false;
+var startCount;
 
 var questions = [
     "What was Kendrick Lamar's first studio album?",
     "Weezy F Baby and the F is NOT for...",
-    "Rap beef is part of the culture, one of these does NOT belong...?"
+    "Rap beef is part of the culture, one of these does NOT belong...?",
+    "Eminem, 50 Cent, and Kendrick were all signed by...",
+    "Aftermath and Death Row Records are both spin off's of this legendary lable.",
+    "One might say that Ice Cube is not a fan of..",
+    "18 years.. 18 years.. and on the 18th birthday, found out it wasn't his?!",
+    "Mac Miller and this rapper knew eachother in highschool",
+    "Which of these rap groups had a show on Cartoon Network's Adult Swim?",
+    "Everybody know, you dont mess with the white boy.. Who would that be?",
+    "BONUS: Is Tupac alive?"
 ];
 
 var answerArrays = [
     [
-        "Good Kid M.A.A.D City",
-        "Section.80",
-        "Damn.",
-        "To Pimp a Butterfly"
+        "Good Kid M.A.A.D City", "Section.80", "Damn.", "To Pimp a Butterfly"
     ],
     [
-        "Front Door",
-        "Forensics",
-        "Finisher",
-        "Flaw"
+        "Front Door", "Forensics", "Finisher", "Flaw"
     ],
     [
-        "Kendrick vs J. Cole",
-        "Tupac vs Biggie",
-        "Jay-Z vs Nas",
-        "50 Cent vs Ja Rule"
+        "Kendrick vs J. Cole", "Tupac vs Biggie", "Jay-Z vs Nas", "50 Cent vs Ja Rule"
+    ],
+    [
+        "Jay-Z", "Death Row", "Dr. Dre", "Young Money"
+    ],
+    [
+        "Def Jam", "Roc-A-Fella", "Cash Money", "Ruthless Records"
+    ],
+    [
+        "The Post Office", "The Police", "Pork Chops", "Poor Handwriting"
+    ],
+    [
+        "Gold Digger", "Jesus Walks", "Flashing Lights", "Good Life"
+    ],
+    [
+        "Tyler The Creator", "Skizzy Mars", "Chris Webby", "Wiz Khalifa"
+    ],
+    [
+        "N.W.A", "Three Loco", "Odd Future", "Outkast"
+    ],
+    [
+        "Mac Miller", "Eminem", "Aesop Rock", "Action Bronson"
+    ],
+    [
+        "Yes", "No"
     ]
 ];
 
 var correctAnswers = [
     "Section.80",
     "Flaw",
-    "Kendrick vs J. Cole"
+    "Kendrick vs J. Cole",
+    "Dr. Dre",
+    "Ruthless Records",
+    "The Police",
+    "Gold Digger",
+    "Wiz Khalifa",
+    "Odd Future",
+    "Eminem",
+    "Yes"
 ];
 
 $(document).ready(function() {
@@ -44,6 +76,7 @@ $(document).ready(function() {
     // Clears start screen, previous game scorecard, or prompt 
     // and displays a question with answer buttons
     function displayGame() {
+        points = 20;
         clearPrompt();
         $("#start").html("");
         $("#playAgainButtonSection").html("");
@@ -61,13 +94,15 @@ $(document).ready(function() {
             answerButton.text(answerArrays[questionSelector][i]);
             $("#answerSection" + i).append(answerButton);
         }  
+        startCountdown();
     }
 
     // Grabs dynamically created answer buttons and runs right/wrong logic.
     $("div.row.answers").on("click", "button.answer", userSelection)
 
-    // determines if the user selection was correct and adjusts points accordingly.
+    // determines if the user selection was correct and adjusts score accordingly.
     function userSelection() {
+        stopCountdown();
         if ($(this).attr("data-name") == correctAnswers[questionSelector]) {
             rightWrong = true;
             correct++;
@@ -84,10 +119,10 @@ $(document).ready(function() {
     function nextQuestion() {
         if (questionSelector == answerArrays.length - 1) {
             questionSelector = 0;
-            setTimeout(showScoreCard, 2500);
+            setTimeout(showScoreCard, 1500);
         } else {
             questionSelector++;
-            setTimeout(displayGame, 2500);
+            setTimeout(displayGame, 1500);
         }
     }
 
@@ -138,5 +173,27 @@ $(document).ready(function() {
         $("#prompt").text("");
     }
 
+    // Set interval.
+    function startCountdown() {
+        startCount = setInterval(countdown, 800);
+    }
+
+    // Clear interval.
+    function stopCountdown() {
+        clearInterval(startCount);
+    }
+
+    // Checks for timeout and decrements points.
+    function countdown() {
+        if (points <= 0) {
+            stopCountdown();
+            points = 20;
+            showResult();
+            nextQuestion();
+        } else {
+            points--;
+            $("#points").text(points);
+        }
+    }
 })
 
