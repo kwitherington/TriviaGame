@@ -5,6 +5,7 @@ var score = 0;
 var questionSelector = 0;
 var rightWrong = false;
 var startCount;
+var gifUrl = "";
 
 var questions = [
     "What was Kendrick Lamar's first studio album?",
@@ -83,6 +84,7 @@ $(document).ready(function() {
         $("#rightAnswers").text("");
         $("#wrongAnswers").text("");
         $("#totalScore").text("");
+        $("#gifDiv").html("");
         $("#points").text(points);
         $("#question").text(questions[questionSelector]);
         for (i = 0; i < answerArrays[questionSelector].length; i++) {
@@ -128,9 +130,14 @@ $(document).ready(function() {
 
     // Displays result of the question and prompt if wrong.
     function showResult() {
+        gifCall(correctAnswers[questionSelector]);
         clearGame();
         if (rightWrong == true) {
             $("#rightWrong").text("Correct");
+            var gifAnswer = $("<img>");
+            gifAnswer.attr('src', gifUrl);
+            gifAnswer.addClass("img-thumbnail");
+            $("#gifDiv").html(gifAnswer);
             rightWrong = false;
         } else {
             $("#rightWrong").text("Incorrect");
@@ -194,6 +201,17 @@ $(document).ready(function() {
             points--;
             $("#points").text(points);
         }
+    }
+
+    function gifCall(search) {
+        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + search + "&limit=1&api_key=DxWaOfGscEYwBq3DADkMyW7EuzLJJe9k";
+
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        }).then(function(response) {
+          gifUrl = response.data[0].images.original.url;
+        });
     }
 })
 
