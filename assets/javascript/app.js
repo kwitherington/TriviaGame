@@ -155,7 +155,7 @@ $(document).ready(function() {
         $("#wrongAnswers").text("Incorrect Answers: " + incorrect);
         $("#totalScore").text("Total Score: " + score);
         var playAgainButton = $("<button>");
-        playAgainButton.addClass("playAgain");
+        playAgainButton.addClass("playAgain btn btn-outline-dark btn-lg btn-block");
         playAgainButton.text("Play Again?");
         $("#playAgainButtonSection").append(playAgainButton);
         correct = 0;
