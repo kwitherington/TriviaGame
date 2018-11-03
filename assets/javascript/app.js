@@ -204,7 +204,7 @@ $(document).ready(function() {
     }
 
     function gifCall(search) {
-        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + search + "&limit=1&api_key=DxWaOfGscEYwBq3DADkMyW7EuzLJJe9k";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + search + "&limit=1&api_key=DxWaOfGscEYwBq3DADkMyW7EuzLJJe9k";
 
         $.ajax({
           url: queryURL,
